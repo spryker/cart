@@ -2,13 +2,12 @@
 
 namespace SprykerFeature\Zed\Cart\Business\Model;
 
+use SprykerFeature\Zed\Calculation\Business\Model\CalculableInterface;
 use Generated\Shared\Calculation\CalculableContainerInterface;
 use Generated\Shared\Cart\CartInterface;
-use SprykerFeature\Zed\Calculation\Business\Model\CalculableInterface;
 
 class CalculableContainer implements CalculableInterface
 {
-
     /**
      * @var CartInterface
      */
@@ -29,6 +28,4 @@ class CalculableContainer implements CalculableInterface
     {
         return $this->cart;
     }
-
-
 }

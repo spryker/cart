@@ -1,11 +1,12 @@
 <?php
 
-namespace SprykerFeature\Client\Cart\StorageProvider;
+namespace SprykerFeature\Client\Cart\Storage;
 
 use Generated\Shared\Cart\CartInterface;
 
-interface StorageProviderInterface
+interface CartStorageInterface
 {
+
     /**
      * @return CartInterface
      */
@@ -16,8 +17,4 @@ interface StorageProviderInterface
      */
     public function setCart(CartInterface $cart);
 
-    /**
-     * @return int
-     */
-    public function getCartCount();
 }

@@ -1,27 +1,38 @@
 <?php
-namespace SprykerFeature\Client\Cart\Model;
 
-use Generated\Shared\Transfer\CartCartInterface as CartTransferInterfaceTransfer;
+namespace SprykerFeature\Client\Cart;
 
-interface CartInterface
+use Generated\Shared\Cart\CartInterface;
+
+interface CartClientInterface
 {
     /**
-     * @return CartTransferInterface
+     * @return CartInterface
      */
     public function getCart();
+
+    /**
+     * @return CartInterface
+     */
+    public function clearCart();
+
+    /**
+     * @return int
+     */
+    public function getItemCount();
 
     /**
      * @param string $sku
      * @param int $quantity
      *
-     * @return CartTransferInterface
+     * @return CartInterface
      */
     public function addToCart($sku, $quantity = 1);
 
     /**
      * @param string $sku
      *
-     * @return CartTransferInterface
+     * @return CartInterface
      */
     public function removeFromCart($sku);
 
@@ -29,7 +40,7 @@ interface CartInterface
      * @param string $sku
      * @param int $quantity
      *
-     * @return CartTransferInterface
+     * @return CartInterface
      */
     public function decreaseItemQuantity($sku, $quantity = 1);
 
@@ -37,12 +48,12 @@ interface CartInterface
      * @param string $sku
      * @param int $quantity
      *
-     * @return CartTransferInterface
+     * @return CartInterface
      */
     public function increaseItemQuantity($sku, $quantity = 1);
 
     /**
-     * @return CartTransferInterface
+     * @return CartInterface
      */
     public function recalculate();
 }

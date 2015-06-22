@@ -1,21 +1,25 @@
 <?php
-/**
- * (c) Spryker Systems GmbH copyright protected
- */
 
-namespace SprykerFeature\Yves\Cart;
+namespace SprykerFeature\Client\Cart;
 
-use Generated\Yves\Ide\FactoryAutoCompletion\Cart;
-use SprykerEngine\Yves\Kernel\AbstractDependencyContainer;
-use SprykerFeature\Client\Cart\Model\CartInterface;
-use SprykerFeature\Client\Cart\StorageProvider\StorageProviderInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Generated\Client\Ide\FactoryAutoCompletion\Cart;
+use SprykerEngine\Client\Kernel\AbstractDependencyContainer;
 
 /**
  * @method Cart getFactory()
  */
 class CartDependencyContainer extends AbstractDependencyContainer
 {
+
+    /**
+     * @throws \ErrorException
+     * @return mixed
+     */
+    public function createSession()
+    {
+        return $this->getProvidedDependency(CartDependencyProvider::SESSION);
+    }
+
     /**
      * @param SessionInterface $session
      *

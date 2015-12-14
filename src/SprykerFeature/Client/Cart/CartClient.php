@@ -4,14 +4,14 @@
  * (c) Spryker Systems GmbH copyright protected
  */
 
-namespace SprykerFeature\Client\Cart\Service;
+namespace SprykerFeature\Client\Cart;
 
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\CartTransfer;
 use Generated\Shared\Transfer\ChangeTransfer;
-use SprykerEngine\Client\Kernel\Service\AbstractClient;
-use SprykerFeature\Client\Cart\Service\Session\CartSessionInterface;
-use SprykerFeature\Client\Cart\Service\Zed\CartStubInterface;
+use SprykerEngine\Client\Kernel\AbstractClient;
+use SprykerFeature\Client\Cart\Session\CartSessionInterface;
+use SprykerFeature\Client\Cart\Zed\CartStubInterface;
 
 /**
  * @method CartDependencyContainer getDependencyContainer()

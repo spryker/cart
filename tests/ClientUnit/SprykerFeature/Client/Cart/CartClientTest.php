@@ -4,14 +4,13 @@
  * (c) Spryker Systems GmbH copyright protected
  */
 
-namespace ClientUnit\SprykerFeature\Client\Cart\Service;
+namespace ClientUnit\SprykerFeature\Client\Cart;
 
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\CartTransfer;
-use SprykerFeature\Client\Cart\Service\CartClient;
-use SprykerFeature\Client\Cart\Service\Session\CartSessionInterface;
-use SprykerFeature\Client\Cart\Service\Storage\CartStorageInterface;
-use SprykerFeature\Client\Cart\Service\Zed\CartStubInterface;
+use SprykerFeature\Client\Cart\CartClient;
+use SprykerFeature\Client\Cart\Session\CartSessionInterface;
+use SprykerFeature\Client\Cart\Zed\CartStubInterface;
 
 /**
  * @group SprykerFeature
@@ -260,18 +259,16 @@ class CartClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @param CartSessionInterface|null $cartSession
      * @param CartStubInterface|null $cartStub
-     * @param CartStorageInterface|null $cartStorage
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getDependencyContainerMock(
         CartSessionInterface $cartSession = null,
-        CartStubInterface $cartStub = null,
-        CartStorageInterface $cartStorage = null
+        CartStubInterface $cartStub = null
     ) {
         $dependencyContainerMock = $this->getMock(
-            'SprykerEngine\Client\Kernel\Service\AbstractServiceDependencyContainer',
-            ['createSession', 'createZedStub', 'createStorage'], [], '', false);
+            'SprykerEngine\Client\Kernel\AbstractDependencyContainer',
+            ['createSession', 'createZedStub'], [], '', false);
 
         if ($cartSession !== null) {
             $dependencyContainerMock->expects($this->any())
@@ -282,11 +279,6 @@ class CartClientTest extends \PHPUnit_Framework_TestCase
             $dependencyContainerMock->expects($this->any())
                 ->method('createZedStub')
                 ->will($this->returnValue($cartStub));
-        }
-        if ($cartStorage !== null) {
-            $dependencyContainerMock->expects($this->any())
-                ->method('createStorage')
-                ->will($this->returnValue($cartStorage));
         }
 
         return $dependencyContainerMock;
@@ -300,7 +292,7 @@ class CartClientTest extends \PHPUnit_Framework_TestCase
     private function getCartClientMock($dependencyContainerMock)
     {
         $cartClientMock = $this->getMock(
-            'SprykerFeature\Client\Cart\Service\CartClient',
+            'SprykerFeature\Client\Cart\CartClient',
             ['getDependencyContainer'], [], '', false);
 
         $cartClientMock->expects($this->any())
@@ -315,7 +307,7 @@ class CartClientTest extends \PHPUnit_Framework_TestCase
      */
     private function getSessionMock()
     {
-        $sessionMock = $this->getMock('SprykerFeature\Client\Cart\Service\Session\CartSessionInterface', [
+        $sessionMock = $this->getMock('SprykerFeature\Client\Cart\Session\CartSessionInterface', [
             'getCart',
             'setCart',
             'getItemCount',
@@ -330,7 +322,7 @@ class CartClientTest extends \PHPUnit_Framework_TestCase
      */
     private function getStubMock()
     {
-        return $this->getMock('SprykerFeature\Client\Cart\Service\Zed\CartStubInterface', [
+        return $this->getMock('SprykerFeature\Client\Cart\Zed\CartStubInterface', [
             'addItem',
             'removeItem',
             'increaseItemQuantity',

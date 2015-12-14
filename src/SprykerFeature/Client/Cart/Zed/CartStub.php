@@ -4,12 +4,12 @@
  * (c) Spryker Systems GmbH copyright protected
  */
 
-namespace SprykerFeature\Client\Cart\Service\Zed;
+namespace SprykerFeature\Client\Cart\Zed;
 
 use Generated\Shared\Transfer\CartTransfer;
 use Generated\Shared\Transfer\ChangeTransfer;
 use SprykerEngine\Shared\Transfer\TransferInterface;
-use SprykerFeature\Client\ZedRequest\Service\Stub\BaseStub;
+use SprykerFeature\Client\ZedRequest\Stub\BaseStub;
 
 class CartStub extends BaseStub implements CartStubInterface
 {

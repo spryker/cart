@@ -6,6 +6,6 @@
 
 namespace Spryker\Zed\Cart\Business\Exception;
 
-class InvalidArgumentException extends \InvalidArgumentException
+class InvalidQuantityExeption extends \InvalidArgumentException
 {
 }

@@ -8,6 +8,6 @@ namespace Spryker\Zed\Cart\Communication;
 
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 
-class CartDependencyContainer extends AbstractCommunicationFactory
+class CartCommunicationFactory extends AbstractCommunicationFactory
 {
 }

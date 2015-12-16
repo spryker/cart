@@ -3,10 +3,10 @@
 namespace Functional\Spryker\Zed\Cart\Fixture;
 
 use Spryker\Shared\Config;
-use Spryker\Zed\Cart\Business\CartDependencyContainer;
+use Spryker\Zed\Cart\Business\CartBusinessFactory;
 use Spryker\Zed\Cart\CartConfig;
 
-class CartFixtureDependencyContainer extends CartDependencyContainer
+class CartFixtureBusinessFactory extends CartBusinessFactory
 {
 
     public function getConfig()

@@ -12,7 +12,7 @@ use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Cart\Zed\CartStubInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CartDependencyContainer extends AbstractFactory
+class CartFactory extends AbstractFactory
 {
 
     /**

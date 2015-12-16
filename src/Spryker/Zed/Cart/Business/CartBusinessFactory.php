@@ -25,7 +25,7 @@ use Spryker\Zed\ItemGrouper\Business\ItemGrouperFacade;
 /**
  * @method CartConfig getConfig()
  */
-class CartDependencyContainer extends AbstractBusinessFactory
+class CartBusinessFactory extends AbstractBusinessFactory
 {
 
     /**

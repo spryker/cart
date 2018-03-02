@@ -5,34 +5,22 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Client\Cart;
+namespace Spryker\Client\Cart\Dependency\Plugin;
 
 use ArrayObject;
 use Generated\Shared\Transfer\ItemTransfer;
-use Generated\Shared\Transfer\QuoteTransfer;
 
-interface CartClientInterface
+interface QuoteStorageStrategyPluginInterface
 {
     /**
      * Specification:
-     *  - Gets current quote from session
+     * - Gets quote storage strategy type
      *
      * @api
      *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
+     * @return string
      */
-    public function getQuote();
-
-    /**
-     * Specification:
-     *  - Empty existing quote and store to session
-     * - TODO: update spec
-     *
-     * @api
-     *
-     * @return void
-     */
-    public function clearQuote();
+    public function getStorageStrategy();
 
     /**
      * Specification:
@@ -75,16 +63,6 @@ interface CartClientInterface
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function removeItem($sku, $groupKey = null);
-
-    /**
-     * Specification:
-     *  - Returns the calculated number of items in cart
-     *
-     * @api
-     *
-     * @return int
-     */
-    public function getItemCount();
 
     /**
      * Specification:
@@ -147,20 +125,6 @@ interface CartClientInterface
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function increaseItemQuantity($sku, $groupKey = null, $quantity = 1);
-
-    /**
-     * Specification:
-     *  - Store current quote into session
-     *
-     * @api
-     *
-     * @deprecated
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
-    public function storeQuote(QuoteTransfer $quoteTransfer);
 
     /**
      * Specification:

@@ -1,0 +1,6 @@
+{
+  "description": "Needed for core dependency management - overwrites dependencies between modules",
+  "include": {
+    "CartExtension": "Interfaces it depends on"
+  }
+}

@@ -41,6 +41,7 @@ class CartItemAddTripleStrategy implements CartItemOperationStrategyInterface
                 $currentItemTransfer->setQuantity(
                     $currentItemTransfer->getQuantity() + $itemTransfer->getQuantity()
                 );
+
                 return $quoteTransfer;
             }
         }

@@ -10,7 +10,7 @@ namespace Spryker\Zed\Cart\Business\StorageProvider;
 use Generated\Shared\Transfer\CartChangeTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Zed\Cart\Business\Exception\InvalidQuantityExeption;
+use Spryker\Zed\Cart\Business\Exception\InvalidQuantityException;
 use Traversable;
 
 class NonPersistentProvider implements StorageProviderInterface
@@ -195,14 +195,14 @@ class NonPersistentProvider implements StorageProviderInterface
     /**
      * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
      *
-     * @throws \Spryker\Zed\Cart\Business\Exception\InvalidQuantityExeption
+     * @throws \Spryker\Zed\Cart\Business\Exception\InvalidQuantityException
      *
      * @return bool
      */
     protected function isValidQuantity(ItemTransfer $itemTransfer)
     {
         if ($itemTransfer->getQuantity() < 1) {
-            throw new InvalidQuantityExeption(
+            throw new InvalidQuantityException(
                 sprintf(
                     'Could not change the quantity of cart item "%s" to "%d".',
                     $itemTransfer->getSku(),

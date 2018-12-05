@@ -213,7 +213,7 @@ class NonPersistentProviderTest extends Unit
     }
 
     /**
-     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityExeption
+     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityException
      * @expectedExceptionMessage Could not change the quantity of cart item "123" to "-3".
      *
      * @return void
@@ -236,7 +236,7 @@ class NonPersistentProviderTest extends Unit
     }
 
     /**
-     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityExeption
+     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityException
      * @expectedExceptionMessage Could not change the quantity of cart item "123" to "0".
      *
      * @return void
@@ -259,7 +259,7 @@ class NonPersistentProviderTest extends Unit
     }
 
     /**
-     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityExeption
+     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityException
      * @expectedExceptionMessage Could not change the quantity of cart item "123" to "-3".
      *
      * @return void
@@ -282,7 +282,7 @@ class NonPersistentProviderTest extends Unit
     }
 
     /**
-     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityExeption
+     * @expectedException \Spryker\Zed\Cart\Business\Exception\InvalidQuantityException
      * @expectedExceptionMessage Could not change the quantity of cart item "123" to "0".
      *
      * @return void

@@ -51,6 +51,20 @@ class CartFacade extends AbstractFacade implements CartFacadeInterface
      *
      * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
      *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function addToCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
+    {
+        return $this->getFactory()->createCartOperation()->addToCart($cartChangeTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
+     *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function remove(CartChangeTransfer $cartChangeTransfer)
@@ -84,6 +98,20 @@ class CartFacade extends AbstractFacade implements CartFacadeInterface
     public function validateQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         return $this->getFactory()->createQuoteValidator()->validate($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
+     *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function removeFromCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
+    {
+        return $this->getFactory()->createCartOperation()->removeFromCart($cartChangeTransfer);
     }
 
     /**

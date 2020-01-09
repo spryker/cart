@@ -272,16 +272,35 @@ class Operation implements OperationInterface
      */
     public function reloadItems(QuoteTransfer $quoteTransfer)
     {
+        return $this->reloadItemsInQuote($quoteTransfer)->getQuoteTransfer();
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function reloadItemsInQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
+    {
+        $originalQuoteTransfer = (new QuoteTransfer())
+            ->fromArray($quoteTransfer->modifiedToArray(), true);
+
+        $quoteResponseTransfer = (new QuoteResponseTransfer())
+            ->setIsSuccessful(false)
+            ->setQuoteTransfer($originalQuoteTransfer);
+
         if ($this->quoteFacade->isQuoteLocked($quoteTransfer)) {
-            return $quoteTransfer;
+            $this->messengerFacade->addErrorMessage(
+                $this->createMessengerMessageTransfer(static::GLOSSARY_KEY_LOCKED_CART_CHANGE_DENIED)
+            );
+
+            return $this->addQuoteErrorsToQuoteResponse($quoteResponseTransfer);
         }
 
         $quoteValidationResponseTransfer = $this->quoteFacade->validateQuote($quoteTransfer);
         if (!$quoteValidationResponseTransfer->getIsSuccessful()) {
-            return $quoteTransfer;
+            return $this->addQuoteErrorsToQuoteResponse($quoteResponseTransfer);
         }
-
-        $originalQuoteTransfer = (new QuoteTransfer())->fromArray($quoteTransfer->modifiedToArray(), true);
 
         $quoteTransfer = $this->executePreReloadPlugins($quoteTransfer);
 
@@ -293,7 +312,7 @@ class Operation implements OperationInterface
         $cartChangeTransfer->setQuote($quoteTransfer);
 
         if (!$this->preCheckCart($cartChangeTransfer)) {
-            return $originalQuoteTransfer;
+            return $this->addQuoteErrorsToQuoteResponse($quoteResponseTransfer);
         }
 
         $expandedCartChangeTransfer = $this->expandChangedItems($cartChangeTransfer);
@@ -303,11 +322,17 @@ class Operation implements OperationInterface
 
         $quoteTransfer = $this->executePostReloadItemsPlugins($quoteTransfer);
 
-        if ($this->isTerminated(static::TERMINATION_EVENT_NAME_RELOAD, $cartChangeTransfer, $quoteTransfer)) {
-            return $originalQuoteTransfer;
+        if ($this->isTerminated(
+            static::TERMINATION_EVENT_NAME_RELOAD,
+            $cartChangeTransfer,
+            $quoteTransfer
+        )) {
+            return $this->addQuoteErrorsToQuoteResponse($quoteResponseTransfer);
         }
 
-        return $quoteTransfer;
+        return $quoteResponseTransfer
+            ->setQuoteTransfer($quoteTransfer)
+            ->setIsSuccessful(true);
     }
 
     /**

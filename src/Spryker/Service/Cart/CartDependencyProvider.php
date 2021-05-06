@@ -10,9 +10,6 @@ namespace Spryker\Service\Cart;
 use Spryker\Service\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Service\Kernel\Container;
 
-/**
- * @method \Spryker\Service\Cart\CartConfig getConfig()
- */
 class CartDependencyProvider extends AbstractBundleDependencyProvider
 {
     public const PLUGINS_CART_ITEM_MATCH_VOTER_STRATEGY = 'PLUGINS_CART_ITEM_MATCH_VOTER_STRATEGY';

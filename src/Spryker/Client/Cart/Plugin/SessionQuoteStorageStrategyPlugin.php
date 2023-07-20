@@ -344,14 +344,17 @@ class SessionQuoteStorageStrategyPlugin extends AbstractPlugin implements QuoteS
      *  - Reloads all items in cart anew, it recreates all items transfer, reads new prices, options, bundles.
      *  - Stores quote in session internally after zed request.
      *  - Returns update quote.
+     *  - From next major version (Forward Compatibility): Returns `QuoteResponseTransfer`.
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
      */
     public function reloadItems()
     {
         $quoteTransfer = $this->getQuote();
-        $quoteTransfer = $this->getCartZedStub()->reloadItems($quoteTransfer);
+        $quoteResponseTransfer = $this->getCartZedStub()->reloadItemsInQuote($quoteTransfer);
         $this->getQuoteClient()->setQuote($quoteTransfer);
+
+        return $quoteResponseTransfer;
     }
 
     /**

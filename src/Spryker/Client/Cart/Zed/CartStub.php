@@ -98,6 +98,21 @@ class CartStub extends ZedRequestStub implements CartStubInterface
     }
 
     /**
+     * @uses \Spryker\Zed\Cart\Communication\Controller\GatewayController::reloadItemsInQuoteAction()
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function reloadItemsInQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
+    {
+        /** @var \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer */
+        $quoteResponseTransfer = $this->zedStub->call('/cart/gateway/reload-items-in-quote', $quoteTransfer);
+
+        return $quoteResponseTransfer;
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\CartChangeQuantityTransfer $cartChangeQuantityTransfer
      *
      * @return \Generated\Shared\Transfer\QuoteResponseTransfer

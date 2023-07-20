@@ -11,6 +11,7 @@ use ArrayObject;
 use Generated\Shared\Transfer\CartChangeTransfer;
 use Generated\Shared\Transfer\CurrencyTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
+use Generated\Shared\Transfer\QuoteErrorTransfer;
 use Generated\Shared\Transfer\QuoteResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Cart\Dependency\Client\CartToMessengerClientInterface;
@@ -263,17 +264,19 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
     }
 
     /**
-     * @return void
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
      */
-    public function reloadItems(): void
+    public function reloadItems()
     {
         if ($this->isQuoteLocked()) {
             $this->addPermissionFailedMessage();
 
-            return;
+            return (new QuoteResponseTransfer())
+                ->addError((new QuoteErrorTransfer())->setMessage(static::GLOSSARY_KEY_LOCKED_CART_CHANGE_DENIED))
+                ->setIsSuccessful(false);
         }
 
-        $this->quoteStorageStrategy->reloadItems();
+        return $this->quoteStorageStrategy->reloadItems();
     }
 
     /**

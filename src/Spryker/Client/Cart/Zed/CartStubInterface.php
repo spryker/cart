@@ -43,6 +43,15 @@ interface CartStubInterface
     public function removeItem(CartChangeTransfer $cartChangeTransfer);
 
     /**
+     * @uses \Spryker\Zed\Cart\Communication\Controller\GatewayController::reloadItemsInQuoteAction()
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function reloadItemsInQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer;
+
+    /**
      * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
      *
      * @return \Generated\Shared\Transfer\QuoteResponseTransfer

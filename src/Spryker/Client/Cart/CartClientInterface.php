@@ -258,6 +258,19 @@ interface CartClientInterface
 
     /**
      * Specification:
+     * - Resolves quote storage strategy which implements {@link \Spryker\Client\CartExtension\Dependency\Plugin\QuoteStorageStrategyPluginInterface}.
+     * - Uses {@link \Spryker\Client\Cart\Plugin\SessionQuoteStorageStrategyPlugin} as a default strategy.
+     * - Reloads all items in cart as new, recreates all item transfers, reads new prices, options, bundles using quote storage strategy.
+     * - Does nothing if cart is locked.
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function reloadItemsInQuote(): QuoteResponseTransfer;
+
+    /**
+     * Specification:
      *  - Resolve quote storage strategy which implements \Spryker\Client\CartExtension\Dependency\Plugin\QuoteStorageStrategyPluginInterface.
      *  - Default quote storage strategy \Spryker\Client\Cart\Plugin\SessionQuoteStorageStrategyPlugin.
      *  - Reloads quote from storage.

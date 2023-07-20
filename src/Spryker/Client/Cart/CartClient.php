@@ -260,6 +260,18 @@ class CartClient extends AbstractClient implements CartClientInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
+     */
+    public function reloadItemsInQuote(): QuoteResponseTransfer
+    {
+        return $this->getFactory()->createQuoteStorageStrategyProxy()->reloadItems();
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @api

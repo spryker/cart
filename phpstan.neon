@@ -6,5 +6,3 @@ parameters:
         - '#Call to an undefined method Orm\\Zed\\#'
         -
             identifier: missingType.iterableValue
-        -
-            identifier: argument.type

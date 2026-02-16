@@ -81,52 +81,52 @@ class Operation implements OperationInterface
     protected $quoteFacade;
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartChangeTransferNormalizerPluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartChangeTransferNormalizerPluginInterface>
      */
     protected $cartBeforePreCheckNormalizerPlugins = [];
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface>
      */
     protected $preCheckPlugins;
 
     /**
-     * @var \Spryker\Shared\Kernel\StrategyResolverInterface<list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface>>
+     * @var \Spryker\Shared\Kernel\StrategyResolverInterface<array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface>>
      */
     protected StrategyResolverInterface $cartPreCheckPluginStrategyResolver;
 
     /**
-     * @var \Spryker\Shared\Kernel\StrategyResolverInterface<list<\Spryker\Zed\CartExtension\Dependency\Plugin\ItemExpanderPluginInterface>>
+     * @var \Spryker\Shared\Kernel\StrategyResolverInterface<array<\Spryker\Zed\CartExtension\Dependency\Plugin\ItemExpanderPluginInterface>>
      */
     protected StrategyResolverInterface $itemExpanderPluginStrategyResolver;
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartRemovalPreCheckPluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartRemovalPreCheckPluginInterface>
      */
     protected $cartRemovalPreCheckPlugins;
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartOperationPostSavePluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartOperationPostSavePluginInterface>
      */
     protected $postSavePlugins = [];
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\PreReloadItemsPluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\PreReloadItemsPluginInterface>
      */
     protected $preReloadPlugins = [];
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartTerminationPluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartTerminationPluginInterface>
      */
     protected $terminationPlugins = [];
 
     /**
-     * @var list<\Spryker\Zed\CartExtension\Dependency\Plugin\PostReloadItemsPluginInterface>
+     * @var array<\Spryker\Zed\CartExtension\Dependency\Plugin\PostReloadItemsPluginInterface>
      */
     protected $postReloadItemsPlugins = [];
 
     /**
-     * @var \Spryker\Shared\Kernel\StrategyResolverInterface<list<\Spryker\Zed\CartExtension\Dependency\Plugin\PreReloadItemsPluginInterface>>
+     * @var \Spryker\Shared\Kernel\StrategyResolverInterface<array<\Spryker\Zed\CartExtension\Dependency\Plugin\PreReloadItemsPluginInterface>>
      */
     protected StrategyResolverInterface $cartPreReloadPluginStrategyResolver;
 
@@ -135,14 +135,14 @@ class Operation implements OperationInterface
      * @param \Spryker\Zed\Cart\Dependency\Facade\CartToCalculationInterface $calculationFacade
      * @param \Spryker\Zed\Cart\Dependency\Facade\CartToMessengerInterface $messengerFacade
      * @param \Spryker\Zed\Cart\Dependency\Facade\CartToQuoteFacadeInterface $quoteFacade
-     * @param \Spryker\Shared\Kernel\StrategyResolverInterface<list<\Spryker\Zed\CartExtension\Dependency\Plugin\ItemExpanderPluginInterface>> $itemExpanderPluginStrategyResolver
-     * @param \Spryker\Shared\Kernel\StrategyResolverInterface<list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface>> $cartPreCheckPluginStrategyResolver
-     * @param list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartOperationPostSavePluginInterface> $postSavePlugins
-     * @param list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartTerminationPluginInterface> $terminationPlugins
-     * @param list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartRemovalPreCheckPluginInterface> $cartRemovalPreCheckPlugins
-     * @param list<\Spryker\Zed\CartExtension\Dependency\Plugin\PostReloadItemsPluginInterface> $postReloadItemsPlugins
-     * @param list<\Spryker\Zed\CartExtension\Dependency\Plugin\CartChangeTransferNormalizerPluginInterface> $cartBeforePreCheckNormalizerPlugins
-     * @param \Spryker\Shared\Kernel\StrategyResolverInterface<list<\Spryker\Zed\CartExtension\Dependency\Plugin\PreReloadItemsPluginInterface>> $cartPreReloadPluginStrategyResolver
+     * @param \Spryker\Shared\Kernel\StrategyResolverInterface<array<\Spryker\Zed\CartExtension\Dependency\Plugin\ItemExpanderPluginInterface>> $itemExpanderPluginStrategyResolver
+     * @param \Spryker\Shared\Kernel\StrategyResolverInterface<array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface>> $cartPreCheckPluginStrategyResolver
+     * @param array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartOperationPostSavePluginInterface> $postSavePlugins
+     * @param array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartTerminationPluginInterface> $terminationPlugins
+     * @param array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartRemovalPreCheckPluginInterface> $cartRemovalPreCheckPlugins
+     * @param array<\Spryker\Zed\CartExtension\Dependency\Plugin\PostReloadItemsPluginInterface> $postReloadItemsPlugins
+     * @param array<\Spryker\Zed\CartExtension\Dependency\Plugin\CartChangeTransferNormalizerPluginInterface> $cartBeforePreCheckNormalizerPlugins
+     * @param \Spryker\Shared\Kernel\StrategyResolverInterface<array<\Spryker\Zed\CartExtension\Dependency\Plugin\PreReloadItemsPluginInterface>> $cartPreReloadPluginStrategyResolver
      */
     public function __construct(
         StorageProviderInterface $cartStorageProvider,
@@ -545,7 +545,7 @@ class Operation implements OperationInterface
      * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
      * @param string $type
      *
-     * @return list<\Generated\Shared\Transfer\MessageTransfer>
+     * @return array<\Generated\Shared\Transfer\MessageTransfer>
      */
     protected function getMessagesByTypeFromItemTransfer(ItemTransfer $itemTransfer, string $type)
     {

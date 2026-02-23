@@ -56,7 +56,7 @@ class CartClientTest extends Unit
         $quoteMock = $this->getQuoteMock();
         $quoteMock->expects($this->once())
             ->method('getQuote')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $factoryMock = $this->getFactoryMock($quoteMock);
         $cartClientMock = $this->getCartClientMock($factoryMock);
@@ -72,7 +72,7 @@ class CartClientTest extends Unit
         $quoteMock = $this->getQuoteMock();
         $quoteMock->expects($this->once())
             ->method('clearQuote')
-            ->will($this->returnValue($quoteMock));
+            ->willReturn($quoteMock);
 
         $factoryMock = $this->getFactoryMock($quoteMock);
         $cartClientMock = $this->getCartClientMock($factoryMock);
@@ -88,7 +88,7 @@ class CartClientTest extends Unit
         $quoteMock = $this->getQuoteMock();
         $quoteMock->expects($this->once())
             ->method('clearQuote')
-            ->will($this->returnValue($quoteMock));
+            ->willReturn($quoteMock);
 
         $factoryMock = $this->getFactoryMock($quoteMock);
         $cartClientMock = $this->getCartClientMock($factoryMock);
@@ -106,12 +106,12 @@ class CartClientTest extends Unit
         $quoteMock = $this->getQuoteMock();
         $quoteMock->expects($this->once())
             ->method('getQuote')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $stubMock = $this->getStubMock();
         $stubMock->expects($this->once())
             ->method('addItem')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $sessionQuoteStorageStrategyPluginMock = $this->getSessionQuoteStorageStrategyPluginMock();
         $factoryMock = $this->getFactoryMock($quoteMock, $stubMock, $sessionQuoteStorageStrategyPluginMock);
@@ -137,15 +137,15 @@ class CartClientTest extends Unit
         $quoteMock = $this->getQuoteMock();
         $quoteMock->expects($this->exactly(3))
             ->method('getQuote')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $stubMock = $this->getStubMock();
         $stubMock->expects($this->once())
             ->method('removeItem')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
         $stubMock->expects($this->never())
             ->method('addItem')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $sessionQuoteStorageStrategyPluginMock = $this->getSessionQuoteStorageStrategyPluginMock();
         $factoryMock = $this->getFactoryMock($quoteMock, $stubMock, $sessionQuoteStorageStrategyPluginMock);
@@ -174,16 +174,16 @@ class CartClientTest extends Unit
         $quoteMock = $this->getQuoteMock();
         $quoteMock->expects($this->exactly(3))
             ->method('getQuote')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $stubMock = $this->getStubMock();
         $stubMock->expects($this->never())
             ->method('removeItem')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
 
         $stubMock->expects($this->once())
             ->method('addItem')
-            ->will($this->returnValue($quoteTransfer));
+            ->willReturn($quoteTransfer);
         $sessionQuoteStorageStrategyPluginMock = $this->getSessionQuoteStorageStrategyPluginMock();
         $factoryMock = $this->getFactoryMock($quoteMock, $stubMock, $sessionQuoteStorageStrategyPluginMock);
         $cartClientMock = $this->getCartClientMock($factoryMock);
@@ -265,36 +265,36 @@ class CartClientTest extends Unit
         ?CartStubInterface $cartStub = null,
         ?QuoteStorageStrategyPluginInterface $quoteStorageStrategyPlugin = null
     ): AbstractFactory {
-        $factoryMock = $this->getMockBuilder(AbstractFactory::class)
-            ->addMethods(['getQuoteClient', 'createZedStub', 'createQuoteStorageStrategyProxy', 'createCartChangeRequestExpander', 'getQuoteItemFinderPlugin'])
-            ->disableOriginalConstructor()->getMock();
+        $factoryMock = $this->getMockBuilder(CartClientTestFactoryPrototype::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         if ($quote !== null) {
             $factoryMock->expects($this->any())
                 ->method('getQuoteClient')
-                ->will($this->returnValue($quote));
+                ->willReturn($quote);
         }
         if ($cartStub !== null) {
             $factoryMock->expects($this->any())
                 ->method('createZedStub')
-                ->will($this->returnValue($cartStub));
+                ->willReturn($cartStub);
         }
         if ($cartStub !== null) {
             $quoteStorageStrategyPlugin->expects($this->any())
                 ->method('getFactory')
-                ->will($this->returnValue($factoryMock));
+                ->willReturn($factoryMock);
             $factoryMock->expects($this->any())
                 ->method('createQuoteStorageStrategyProxy')
-                ->will($this->returnValue($quoteStorageStrategyPlugin));
+                ->willReturn($quoteStorageStrategyPlugin);
         }
 
         $factoryMock->expects($this->any())
             ->method('createCartChangeRequestExpander')
-            ->will($this->returnValue(new CartChangeRequestExpander([], [])));
+            ->willReturn(new CartChangeRequestExpander([], []));
 
         $factoryMock->expects($this->any())
             ->method('getQuoteItemFinderPlugin')
-            ->will($this->returnValue(new SimpleProductQuoteItemFinderPlugin()));
+            ->willReturn(new SimpleProductQuoteItemFinderPlugin());
 
         return $factoryMock;
     }
@@ -321,7 +321,7 @@ class CartClientTest extends Unit
 
         $cartClientMock->expects($this->any())
             ->method('getFactory')
-            ->will($this->returnValue($factoryMock));
+            ->willReturn($factoryMock);
 
         return $cartClientMock;
     }
@@ -332,9 +332,6 @@ class CartClientTest extends Unit
     private function getQuoteMock(): CartToQuoteInterface
     {
         $quoteMock = $this->getMockBuilder(CartToQuoteInterface::class)
-            ->addMethods([
-                'reloadItems',
-            ])
             ->onlyMethods([
             'getQuote',
             'setQuote',
@@ -345,7 +342,7 @@ class CartClientTest extends Unit
         ])->getMock();
 
         $quoteMock->method('getStorageStrategy')
-            ->will($this->returnValue('session'));
+            ->willReturn('session');
 
         return $quoteMock;
     }
@@ -356,11 +353,6 @@ class CartClientTest extends Unit
     private function getStubMock(): CartStubInterface
     {
         return $this->getMockBuilder(CartStubInterface::class)
-            ->addMethods([
-                'changeItemQuantity',
-                'addFlashMessagesFromLastZedRequest',
-                'addResponseMessagesToMessenger',
-            ])
             ->onlyMethods([
                 'addValidItems',
                 'addItem',

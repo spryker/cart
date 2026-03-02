@@ -11,8 +11,5 @@ use Spryker\Client\CartExtension\Dependency\Plugin\QuoteStorageStrategyPluginInt
 
 interface QuoteStorageStrategyProviderInterface
 {
-    /**
-     * @return \Spryker\Client\CartExtension\Dependency\Plugin\QuoteStorageStrategyPluginInterface
-     */
     public function provideStorage(): QuoteStorageStrategyPluginInterface;
 }

@@ -24,9 +24,6 @@ use Spryker\Client\Cart\Plugin\ItemCountPlugin;
  */
 class ItemCountPluginTest extends Unit
 {
-    /**
-     * @return void
-     */
     public function testGetItemCountReturnsOWhenNoItemInQuote(): void
     {
         $quoteTransfer = new QuoteTransfer();
@@ -35,9 +32,6 @@ class ItemCountPluginTest extends Unit
         $this->assertSame(0, $itemCountPlugin->getItemCount($quoteTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testGetItemCountReturnsNumberOfItemsInCart(): void
     {
         $quoteTransfer = new QuoteTransfer();

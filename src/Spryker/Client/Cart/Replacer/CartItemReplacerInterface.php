@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\QuoteResponseTransfer;
 
 interface CartItemReplacerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ItemReplaceTransfer $itemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function replaceItem(ItemReplaceTransfer $itemReplaceTransfer): QuoteResponseTransfer;
 }

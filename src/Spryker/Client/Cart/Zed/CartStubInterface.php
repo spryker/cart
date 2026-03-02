@@ -14,11 +14,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface CartStubInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addValidItems(CartChangeTransfer $cartChangeTransfer): QuoteTransfer;
 
     /**
@@ -28,18 +23,8 @@ interface CartStubInterface
      */
     public function addItem(CartChangeTransfer $cartChangeTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function addToCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\CartItemReplaceTransfer $cartItemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function replaceItem(CartItemReplaceTransfer $cartItemReplaceTransfer): QuoteResponseTransfer;
 
     /**
@@ -49,11 +34,6 @@ interface CartStubInterface
      */
     public function removeItem(CartChangeTransfer $cartChangeTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function removeFromCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer;
 
     /**
@@ -70,10 +50,5 @@ interface CartStubInterface
      */
     public function validateQuote(QuoteTransfer $quoteTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function resetQuoteLock(QuoteTransfer $quoteTransfer): QuoteResponseTransfer;
 }

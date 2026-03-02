@@ -42,9 +42,6 @@ class ExpandItemGroupKeysWithCartIdentifierTest extends Unit
      */
     protected CartBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExpandItemGroupKeysWithCartIdentifierExpandsGroupKeyWithQuoteIdentifier(): void
     {
         // Arrange
@@ -66,9 +63,6 @@ class ExpandItemGroupKeysWithCartIdentifierTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testExpandItemGroupKeysWithCartIdentifierDoesNotExpandGroupKeysForQuoteWithoutId(): void
     {
         // Arrange
@@ -85,9 +79,6 @@ class ExpandItemGroupKeysWithCartIdentifierTest extends Unit
         $this->assertSame(static::FAKE_GROUP_KEY, $cartChangeTrnafer->getItems()->offsetGet(0)->getGroupKey());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandItemGroupKeysWithCartIdentifierDoesNotExpandGroupKeysWithoutQuote(): void
     {
         // Arrange
@@ -104,9 +95,6 @@ class ExpandItemGroupKeysWithCartIdentifierTest extends Unit
         $this->assertSame(static::FAKE_GROUP_KEY, $cartChangeTrnafer->getItems()->offsetGet(0)->getGroupKey());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandItemGroupKeysWithCartIdentifierThrowsNullValueExceptionForItemWithoutGroupKey(): void
     {
         // Arrange

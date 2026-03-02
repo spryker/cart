@@ -18,19 +18,11 @@ class CartItemReplacer implements CartItemReplacerInterface
      */
     protected $operation;
 
-    /**
-     * @param \Spryker\Zed\Cart\Business\Model\OperationInterface $operation
-     */
     public function __construct(OperationInterface $operation)
     {
         $this->operation = $operation;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartItemReplaceTransfer $cartItemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function replaceItem(CartItemReplaceTransfer $cartItemReplaceTransfer): QuoteResponseTransfer
     {
         $cartItemReplaceTransfer->requireCartChangeForAdding()->requireCartChangeForRemoval();

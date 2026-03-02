@@ -40,24 +40,12 @@ class QuoteChangeObserver implements QuoteChangeObserverInterface
         $this->quoteChangeObserverPlugins = $quoteChangeObserverPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $resultQuoteTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $sourceQuoteTransfer
-     *
-     * @return void
-     */
     public function checkChanges(QuoteTransfer $resultQuoteTransfer, QuoteTransfer $sourceQuoteTransfer): void
     {
         $this->checkItemsChanges($resultQuoteTransfer, $sourceQuoteTransfer);
         $this->runQuoteChangeObserverPlugins($resultQuoteTransfer, $sourceQuoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $resultQuoteTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $sourceQuoteTransfer
-     *
-     * @return void
-     */
     protected function checkItemsChanges(QuoteTransfer $resultQuoteTransfer, QuoteTransfer $sourceQuoteTransfer): void
     {
         $resultQuoteItemIndex = $this->createQuoteItemIndex($resultQuoteTransfer->getItems());
@@ -85,12 +73,6 @@ class QuoteChangeObserver implements QuoteChangeObserverInterface
         return $cartIndex;
     }
 
-    /**
-     * @param array $resultQuoteItemIndex
-     * @param array $sourceQuoteItemIndex
-     *
-     * @return void
-     */
     protected function checkQuoteItemPriceChanges(array $resultQuoteItemIndex, array $sourceQuoteItemIndex): void
     {
         $quoteItemDiff = $this->getQuoteItemsPriceDiff($resultQuoteItemIndex, $sourceQuoteItemIndex);
@@ -103,12 +85,6 @@ class QuoteChangeObserver implements QuoteChangeObserverInterface
         }
     }
 
-    /**
-     * @param array $resultQuoteItemIndex
-     * @param array $sourceQuoteItemIndex
-     *
-     * @return array
-     */
     protected function getQuoteItemsPriceDiff(array $resultQuoteItemIndex, array $sourceQuoteItemIndex): array
     {
         $quoteItemDiff = [];
@@ -122,11 +98,6 @@ class QuoteChangeObserver implements QuoteChangeObserverInterface
         return $quoteItemDiff;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return string
-     */
     protected function getItemIdentifier(ItemTransfer $itemTransfer): string
     {
         return $itemTransfer->getGroupKey() ?: $itemTransfer->getSku();
@@ -148,12 +119,6 @@ class QuoteChangeObserver implements QuoteChangeObserverInterface
         return $messageTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $resultQuoteTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $sourceQuoteTransfer
-     *
-     * @return void
-     */
     protected function runQuoteChangeObserverPlugins(QuoteTransfer $resultQuoteTransfer, QuoteTransfer $sourceQuoteTransfer): void
     {
         foreach ($this->quoteChangeObserverPlugins as $quoteChangeObserverPlugin) {

@@ -38,12 +38,6 @@ class CartOperation implements CartOperationInterface
      */
     protected $quoteItemFinderPlugin;
 
-    /**
-     * @param \Spryker\Client\Cart\Dependency\Client\CartToQuoteInterface $quoteClient
-     * @param \Spryker\Client\Cart\Zed\CartStubInterface $cartStub
-     * @param \Spryker\Client\Cart\CartChangeRequestExpander\CartChangeRequestExpanderInterface $cartChangeRequestExpander
-     * @param \Spryker\Client\CartExtension\Dependency\Plugin\QuoteItemFinderPluginInterface $quoteItemFinderPlugin
-     */
     public function __construct(
         CartToQuoteInterface $quoteClient,
         CartStubInterface $cartStub,
@@ -56,11 +50,6 @@ class CartOperation implements CartOperationInterface
         $this->quoteItemFinderPlugin = $quoteItemFinderPlugin;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function addToCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         $cartChangeTransfer->setQuote($this->quoteClient->getQuote());
@@ -75,11 +64,6 @@ class CartOperation implements CartOperationInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function removeFromCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         $cartChangeTransfer->setQuote($this->quoteClient->getQuote());
@@ -94,11 +78,6 @@ class CartOperation implements CartOperationInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function updateQuantity(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         $cartChangeTransferForAdding = $this->prepareCartChangeTransferForAdding($cartChangeTransfer);
@@ -117,12 +96,6 @@ class CartOperation implements CartOperationInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransferForAdding
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransferForRemoval
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function executeUpdateQuantity(
         CartChangeTransfer $cartChangeTransferForAdding,
         CartChangeTransfer $cartChangeTransferForRemoval
@@ -146,11 +119,6 @@ class CartOperation implements CartOperationInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function prepareCartChangeTransferForAdding(CartChangeTransfer $cartChangeTransfer): CartChangeTransfer
     {
         $cartChangeTransferForAdding = $this->createCartChangeTransfer();
@@ -181,11 +149,6 @@ class CartOperation implements CartOperationInterface
         return $this->cartChangeRequestExpander->addItemsRequestExpand($cartChangeTransferForAdding);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function prepareCartChangeTransferForRemoval(CartChangeTransfer $cartChangeTransfer): CartChangeTransfer
     {
         $cartChangeTransferForRemoval = $this->createCartChangeTransfer();
@@ -222,9 +185,6 @@ class CartOperation implements CartOperationInterface
         return $this->cartChangeRequestExpander->removeItemRequestExpand($cartChangeTransferForRemoval);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function createCartChangeTransfer(): CartChangeTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();

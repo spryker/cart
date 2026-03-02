@@ -47,9 +47,6 @@ class CartClientTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testGetCartMustReturnInstanceOfQuoteTransfer(): void
     {
         $quoteTransfer = new QuoteTransfer();
@@ -64,9 +61,6 @@ class CartClientTest extends Unit
         $this->assertSame($quoteTransfer, $cartClientMock->getQuote());
     }
 
-    /**
-     * @return void
-     */
     public function testClearCartMustSetItemCountInSessionToZero(): void
     {
         $quoteMock = $this->getQuoteMock();
@@ -80,9 +74,6 @@ class CartClientTest extends Unit
         $cartClientMock->clearQuote();
     }
 
-    /**
-     * @return void
-     */
     public function testClearCartMustSetCartTransferInSessionToAnEmptyInstance(): void
     {
         $quoteMock = $this->getQuoteMock();
@@ -96,9 +87,6 @@ class CartClientTest extends Unit
         $cartClientMock->clearQuote();
     }
 
-    /**
-     * @return void
-     */
     public function testAddItemMustOnlyExceptTransferInterfaceAsArgument(): void
     {
         $itemTransfer = new ItemTransfer();
@@ -122,9 +110,6 @@ class CartClientTest extends Unit
         $this->assertInstanceOf(QuoteTransfer::class, $quoteTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testChangeItemQuantityMustCallRemoveItemQuantityWhenPassedItemQuantityIsLowerThenInCartGivenItem(): void
     {
         $itemTransfer = new ItemTransfer();
@@ -159,9 +144,6 @@ class CartClientTest extends Unit
         $this->assertInstanceOf(QuoteTransfer::class, $quoteTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testChangeItemQuantityMustCallAddItemQuantityWhenPassedItemQuantityIsLowerThenInCartGivenItem(): void
     {
         $itemTransfer = new ItemTransfer();
@@ -196,9 +178,6 @@ class CartClientTest extends Unit
         $this->assertInstanceOf(QuoteTransfer::class, $quoteTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testGetItemCountReturnNumberOfItemsInCart(): void
     {
         $itemTransfer = new ItemTransfer();
@@ -218,9 +197,6 @@ class CartClientTest extends Unit
         $this->assertSame(1, $cartClientMock->getItemCount());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandCartItemsWithGroupKeyPrefixWhenParamSeparateProductProvided(): void
     {
         // Arrange
@@ -236,9 +212,6 @@ class CartClientTest extends Unit
         $this->assertNotNull($expandCartItem->getGroupKeyPrefix());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandCartItemsWithGroupKeyPrefixWhenParamSeparateProductNotProvided(): void
     {
         // Arrange
@@ -366,9 +339,6 @@ class CartClientTest extends Unit
         ])->getMock();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function createCartChangeTransfer(): CartChangeTransfer
     {
         $cartItem = new ItemTransfer();

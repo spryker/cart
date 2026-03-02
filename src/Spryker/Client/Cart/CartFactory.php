@@ -24,9 +24,6 @@ use Spryker\Client\Kernel\AbstractFactory;
 
 class CartFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\Cart\Operation\CartOperationInterface
-     */
     public function createCartOperation(): CartOperationInterface
     {
         return new CartOperation(
@@ -37,9 +34,6 @@ class CartFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\Cart\Replacer\CartItemReplacerInterface
-     */
     public function createCartItemOperation(): CartItemReplacerInterface
     {
         return new CartItemReplacer(
@@ -58,9 +52,6 @@ class CartFactory extends AbstractFactory
         return $this->getProvidedDependency(CartDependencyProvider::CLIENT_QUOTE);
     }
 
-    /**
-     * @return \Spryker\Client\Cart\Dependency\Client\CartToMessengerClientInterface
-     */
     public function getMessengerClient(): CartToMessengerClientInterface
     {
         return $this->getProvidedDependency(CartDependencyProvider::CLIENT_MESSENGER);
@@ -98,9 +89,6 @@ class CartFactory extends AbstractFactory
         return $this->createQuoteStorageStrategyProvider()->provideStorage();
     }
 
-    /**
-     * @return \Spryker\Client\Cart\QuoteStorageStrategy\QuoteStorageStrategyProxyInterface
-     */
     public function createQuoteStorageStrategyProxy(): QuoteStorageStrategyProxyInterface
     {
         return new QuoteStorageStrategyProxy(
@@ -132,9 +120,6 @@ class CartFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\Cart\Expander\GroupKeyPrefixItemExpanderInterface
-     */
     public function createGroupKeyPrefixItemExpander(): GroupKeyPrefixItemExpanderInterface
     {
         return new GroupKeyPrefixItemExpander(
@@ -175,9 +160,6 @@ class CartFactory extends AbstractFactory
         return $this->getProvidedDependency(CartDependencyProvider::PLUGINS_REMOVE_ITEMS_REQUEST_EXPANDER);
     }
 
-    /**
-     * @return \Spryker\Client\Cart\Dependency\Client\CartToUtilTextServiceInterface
-     */
     protected function getUtilTextService(): CartToUtilTextServiceInterface
     {
         return $this->getProvidedDependency(CartDependencyProvider::SERVICE_UTIL_TEXT);

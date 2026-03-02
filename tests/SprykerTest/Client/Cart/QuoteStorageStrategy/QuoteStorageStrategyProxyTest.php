@@ -51,9 +51,6 @@ class QuoteStorageStrategyProxyTest extends Unit
      */
     protected $quoteStorageStrategyProxy;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -69,33 +66,21 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testAddItemShouldForwardCallToSubject(): void
     {
         $this->assertCallForwardedToSubject('addItem', [new ItemTransfer()], QuoteTransfer::class);
     }
 
-    /**
-     * @return void
-     */
     public function testAddItemsShouldForwardCallToSubject(): void
     {
         $this->assertCallForwardedToSubject('addItems', [[new ItemTransfer()]], QuoteTransfer::class);
     }
 
-    /**
-     * @return void
-     */
     public function testAddValidItemsShouldForwardCallToSubjectAndNotAddMessageForEditableQuote(): void
     {
         $this->assertCallForwardedToSubject('addValidItems', [new CartChangeTransfer()], QuoteTransfer::class);
     }
 
-    /**
-     * @return void
-     */
     public function testValidateQuoteShouldForwardCallToSubject(): void
     {
         $this->assertCallForwardedToSubject(
@@ -105,9 +90,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetStorageStrategyShouldForwardCallToSubject(): void
     {
         $this->assertCallForwardedToSubject(
@@ -117,9 +99,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveItemShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -131,9 +110,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveItemShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -145,9 +121,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveItemsShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -159,9 +132,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveItemsShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -173,9 +143,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testChangeItemQuantityShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -187,9 +154,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testChangeItemQuantityShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -201,9 +165,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testDecreaseItemQuantityShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -215,9 +176,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testDecreaseItemQuantityShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -229,9 +187,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testIncreaseItemQuantityShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -243,9 +198,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testIncreaseItemQuantityShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -257,9 +209,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReloadItemsShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -271,9 +220,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReloadItemsShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -281,9 +227,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         $this->assertCallNotForwardedToSubject('reloadItems', []);
     }
 
-    /**
-     * @return void
-     */
     public function testSetQuoteCurrencyShouldForwardCallToSubjectAndNotAddMessageForNotLockedQuote(): void
     {
         $this->haveNotLockedQuote();
@@ -295,9 +238,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSetQuoteCurrencyShouldNotForwardCallToSubjectAndAddMessageForLockedQuote(): void
     {
         $this->haveLockedQuote();
@@ -309,17 +249,11 @@ class QuoteStorageStrategyProxyTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     protected function expectsErrorMessageNotAdded(): void
     {
         $this->messengerClientMock->expects($this->never())->method($this->anything());
     }
 
-    /**
-     * @return void
-     */
     protected function expectsErrorMessageAdded(): void
     {
         $this->messengerClientMock->expects($this->once())->method('addErrorMessage');
@@ -372,9 +306,6 @@ class QuoteStorageStrategyProxyTest extends Unit
         call_user_func_array([$this->quoteStorageStrategyProxy, $methodName], $parameters);
     }
 
-    /**
-     * @return void
-     */
     protected function haveLockedQuote(): void
     {
         $this->quoteClientMock->method('getQuote')
@@ -383,9 +314,6 @@ class QuoteStorageStrategyProxyTest extends Unit
             ->willReturn(true);
     }
 
-    /**
-     * @return void
-     */
     protected function haveNotLockedQuote(): void
     {
         $this->quoteClientMock->method('getQuote')

@@ -44,11 +44,6 @@ class QuoteLocker implements QuoteLockerInterface
         $this->quoteLockPreResetPlugins = $quoteLockPreResetPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function resetQuoteLock(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $quoteTransfer = $this->executeQuoteLockPreResetPlugins($quoteTransfer);
@@ -61,11 +56,6 @@ class QuoteLocker implements QuoteLockerInterface
             ->setIsSuccessful(true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executeQuoteLockPreResetPlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->quoteLockPreResetPlugins as $quoteLockPreResetPlugin) {

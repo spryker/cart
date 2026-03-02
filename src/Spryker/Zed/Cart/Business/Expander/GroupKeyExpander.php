@@ -24,19 +24,11 @@ class GroupKeyExpander implements GroupKeyExpanderInterface
      */
     protected CartToUtilTextServiceInterface $utilTextService;
 
-    /**
-     * @param \Spryker\Zed\Cart\Dependency\Service\CartToUtilTextServiceInterface $utilTextService
-     */
     public function __construct(CartToUtilTextServiceInterface $utilTextService)
     {
         $this->utilTextService = $utilTextService;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     public function expandItemGroupKeysWithCartIdentifier(CartChangeTransfer $cartChangeTransfer): CartChangeTransfer
     {
         $quoteTransfer = $cartChangeTransfer->getQuote();
@@ -54,12 +46,6 @@ class GroupKeyExpander implements GroupKeyExpanderInterface
         return $cartChangeTransfer;
     }
 
-    /**
-     * @param string $groupKey
-     * @param int $idQuote
-     *
-     * @return string
-     */
     protected function getExpandedGroupKey(string $groupKey, int $idQuote): string
     {
         return sprintf('%s_%s', $groupKey, $this->utilTextService->hashValue((string)$idQuote, static::MD5));

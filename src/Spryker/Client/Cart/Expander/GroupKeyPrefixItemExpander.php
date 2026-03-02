@@ -33,10 +33,6 @@ class GroupKeyPrefixItemExpander implements GroupKeyPrefixItemExpanderInterface
      */
     private $utilTextService;
 
-    /**
-     * @param \Spryker\Client\CartExtension\Dependency\Plugin\QuoteItemFinderPluginInterface $quoteItemFinderPlugin
-     * @param \Spryker\Client\Cart\Dependency\Client\CartToUtilTextServiceInterface $utilTextService
-     */
     public function __construct(
         QuoteItemFinderPluginInterface $quoteItemFinderPlugin,
         CartToUtilTextServiceInterface $utilTextService
@@ -73,9 +69,6 @@ class GroupKeyPrefixItemExpander implements GroupKeyPrefixItemExpanderInterface
         return $cartChangeTransfer;
     }
 
-    /**
-     * @return string
-     */
     protected function buildGroupKeyPrefix(): string
     {
         return $this->utilTextService->generateUniqueId(static::PARAM_PREFIX, true);

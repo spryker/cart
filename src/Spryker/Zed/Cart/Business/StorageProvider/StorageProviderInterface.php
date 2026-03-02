@@ -12,11 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface StorageProviderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addItems(CartChangeTransfer $cartChangeTransfer): QuoteTransfer;
 
     /**

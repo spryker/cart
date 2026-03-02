@@ -234,11 +234,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addExpanderPluginsForOrderAmendmentAsync(Container $container): Container
     {
         $container->set(static::CART_EXPANDER_PLUGINS_FOR_ORDER_AMENDMENT_ASYNC, function (Container $container): array {
@@ -262,11 +257,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCartBeforePreCheckNormalizerPlugins(Container $container): Container
     {
         $container->set(static::CART_BEFORE_PRE_CHECK_NORMALIZER_PLUGINS, function (Container $container): array {
@@ -290,11 +280,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPreCheckPluginsForOrderAmendment(Container $container): Container
     {
         $container->set(static::CART_PRE_CHECK_PLUGINS_FOR_ORDER_AMENDMENT, function () {
@@ -304,11 +289,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPreCheckPluginsForOrderAmendmentAsync(Container $container): Container
     {
         $container->set(static::CART_PRE_CHECK_PLUGINS_FOR_ORDER_AMENDMENT_ASYNC, function (): array {
@@ -360,11 +340,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPreReloadPluginsForOrderAmendmentAsync(Container $container): Container
     {
         $container->set(static::CART_PRE_RELOAD_PLUGINS_FOR_ORDER_AMENDMENT_ASYNC, function (Container $container): array {
@@ -402,11 +377,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCartAddItemStrategyPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_CART_ADD_ITEM_STRATEGY, function (Container $container) {
@@ -416,11 +386,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCartRemoveItemStrategyPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_CART_REMOVE_ITEM_STRATEGY, function (Container $container) {
@@ -430,11 +395,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPostReloadItemsPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_POST_RELOAD_ITEMS, function (Container $container): array {
@@ -444,11 +404,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteLockPreResetPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUOTE_LOCK_PRE_RESET, function () {
@@ -458,11 +413,6 @@ class CartDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilTextService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_TEXT, function (Container $container) {

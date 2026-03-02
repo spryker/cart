@@ -106,9 +106,6 @@ class CartFacadeTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -121,9 +118,6 @@ class CartFacadeTest extends Unit
         $this->setTestData();
     }
 
-    /**
-     * @return void
-     */
     public function testAddToCart(): void
     {
         $quoteTransfer = new QuoteTransfer();
@@ -159,9 +153,6 @@ class CartFacadeTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveFromCart(): void
     {
         $quoteTransfer = new QuoteTransfer();
@@ -188,9 +179,6 @@ class CartFacadeTest extends Unit
         $this->assertCount(0, $changedCart->getItems());
     }
 
-    /**
-     * @return void
-     */
     public function testReloadItemsInQuoteReturnsCorrectData(): void
     {
         // Arrange
@@ -231,9 +219,6 @@ class CartFacadeTest extends Unit
         $this->assertCount(2, $quoteResponseTransfer->getQuoteTransfer()->getItems());
     }
 
-    /**
-     * @return void
-     */
     public function testReloadItemsInQuoteReturnsUnsuccessfulQuoteResponseWithErrorMessageOnLockedQuote(): void
     {
         // Arrange
@@ -265,9 +250,6 @@ class CartFacadeTest extends Unit
         $this->assertCount(1, $quoteResponseTransfer->getQuoteTransfer()->getItems());
     }
 
-    /**
-     * @return void
-     */
     public function testReloadItemsInQuoteReturnsUnsuccessfulQuoteResponseWithErrorMessageOnInvalidItem(): void
     {
         // Arrange
@@ -303,9 +285,6 @@ class CartFacadeTest extends Unit
         $this->assertCount(1, $quoteResponseTransfer->getQuoteTransfer()->getItems());
     }
 
-    /**
-     * @return void
-     */
     public function testIncreaseItemWithVolumePricesQuantityInCartWillReturnCorrectData(): void
     {
         // Arrange
@@ -376,9 +355,6 @@ class CartFacadeTest extends Unit
         $this->assertEquals(777, $itemTransfer->getUnitGrossPrice());
     }
 
-    /**
-     * @return void
-     */
     public function testDecreaseItemWithVolumePricesQuantityInCartWillReturnCorrectData(): void
     {
         // Arrange
@@ -450,9 +426,6 @@ class CartFacadeTest extends Unit
         $this->assertEquals(999, $itemTransfer->getUnitGrossPrice());
     }
 
-    /**
-     * @return void
-     */
     public function testAddValidAddsValidItemsAndIgnoresInvalidOnes(): void
     {
         // Arrange
@@ -530,9 +503,6 @@ class CartFacadeTest extends Unit
         return $this->tester->getFacade();
     }
 
-    /**
-     * @return void
-     */
     public function testCleanUpItemsRemoveKeyGroupPrefixFromQuoteItem(): void
     {
         // Arrange
@@ -551,9 +521,6 @@ class CartFacadeTest extends Unit
         $this->assertNull($quoteTransfer->getItems()[0]->getGroupKeyPrefix());
     }
 
-    /**
-     * @return void
-     */
     public function testCleanUpItemsRemoveKeyGroupPrefixFromQuoteItemIfMoreThanOne(): void
     {
         // Arrange
@@ -577,9 +544,6 @@ class CartFacadeTest extends Unit
         $this->assertNotNull($quoteTransfer->getItems()[0]->getGroupKeyPrefix());
     }
 
-    /**
-     * @return void
-     */
     public function testReplaceItemShouldReplaceItem(): void
     {
         // Arrange
@@ -622,9 +586,6 @@ class CartFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReplaceItemWillFailWhenCartChangeForAddingIsMissing(): void
     {
         // Arrange
@@ -650,9 +611,6 @@ class CartFacadeTest extends Unit
         $this->getCartFacade()->replaceItem($cartItemReplaceTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testReplaceItemWillFailWhenCartChangeForRemoveIsMissing(): void
     {
         $cartChangeForAdd = (new CartChangeBuilder())
@@ -672,9 +630,6 @@ class CartFacadeTest extends Unit
         $this->getCartFacade()->replaceItem($cartItemReplaceTransfer);
     }
 
-    /**
-     * @return void
-     */
     protected function setTestData(): void
     {
         $defaultPriceType = SpyPriceTypeQuery::create()->filterByName(static::PRICE_TYPE_DEFAULT)->findOneOrCreate();
@@ -734,9 +689,6 @@ class CartFacadeTest extends Unit
             ->save();
     }
 
-    /**
-     * @return void
-     */
     public function testQuoteTransferIsDeepClonedDuringValidation(): void
     {
         // Arrange
@@ -888,9 +840,6 @@ class CartFacadeTest extends Unit
         $this->getCartFacade()->reloadItems($quoteTransfer);
     }
 
-    /**
-     * @return callable
-     */
     protected function getQuoteChangeObserverPluginCheckChangesCallback(): callable
     {
         return function (QuoteTransfer $resultQuoteTransfer, QuoteTransfer $sourceQuoteTransfer) {
@@ -936,9 +885,6 @@ class CartFacadeTest extends Unit
         ];
     }
 
-    /**
-     * @return \Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface
-     */
     protected function getNeverCalledCartPreCheckPluginMock(): CartPreCheckPluginInterface
     {
         $cartPreCheckPluginMock = $this
@@ -949,9 +895,6 @@ class CartFacadeTest extends Unit
         return $cartPreCheckPluginMock;
     }
 
-    /**
-     * @return \Spryker\Zed\CartExtension\Dependency\Plugin\CartPreCheckPluginInterface
-     */
     protected function getOnceCalledCartPreCheckPluginMock(): CartPreCheckPluginInterface
     {
         $cartPreCheckPluginMock = $this
@@ -964,9 +907,6 @@ class CartFacadeTest extends Unit
         return $cartPreCheckPluginMock;
     }
 
-    /**
-     * @return void
-     */
     protected function resetCachedEntities(): void
     {
         $priceProductConcreteReaderReflection = new ReflectionClass("\Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductConcreteReader");

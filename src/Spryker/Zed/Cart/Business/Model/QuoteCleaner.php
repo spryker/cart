@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class QuoteCleaner implements QuoteCleanerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function cleanUpItemGroupKeyPrefix(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $skuCounts = $this->getItemSkuCounts($quoteTransfer);
@@ -29,11 +24,6 @@ class QuoteCleaner implements QuoteCleanerInterface
         return $quoteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return array
-     */
     protected function getItemSkuCounts(QuoteTransfer $quoteTransfer): array
     {
         $skuCounts = [];

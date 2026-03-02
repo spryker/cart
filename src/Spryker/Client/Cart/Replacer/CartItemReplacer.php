@@ -40,12 +40,6 @@ class CartItemReplacer implements CartItemReplacerInterface
      */
     protected $quoteItemFinderPlugin;
 
-    /**
-     * @param \Spryker\Client\Cart\Dependency\Client\CartToQuoteInterface $quoteClient
-     * @param \Spryker\Client\Cart\Zed\CartStubInterface $cartStub
-     * @param \Spryker\Client\Cart\CartChangeRequestExpander\CartChangeRequestExpanderInterface $cartChangeRequestExpander
-     * @param \Spryker\Client\CartExtension\Dependency\Plugin\QuoteItemFinderPluginInterface $quoteItemFinderPlugin
-     */
     public function __construct(
         CartToQuoteInterface $quoteClient,
         CartStubInterface $cartStub,
@@ -58,11 +52,6 @@ class CartItemReplacer implements CartItemReplacerInterface
         $this->quoteItemFinderPlugin = $quoteItemFinderPlugin;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemReplaceTransfer $itemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function replaceItem(ItemReplaceTransfer $itemReplaceTransfer): QuoteResponseTransfer
     {
         $cartChangeTransferForRemoval = $this->prepareCartChangeTransferForRemoval($itemReplaceTransfer);
@@ -81,12 +70,6 @@ class CartItemReplacer implements CartItemReplacerInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransferForRemoval
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransferForAdding
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function executeReplaceItem(
         CartChangeTransfer $cartChangeTransferForRemoval,
         CartChangeTransfer $cartChangeTransferForAdding
@@ -104,11 +87,6 @@ class CartItemReplacer implements CartItemReplacerInterface
             ->setCartChangeForAdding($cartChangeTransferForAdding));
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemReplaceTransfer $itemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function prepareCartChangeTransferForAdding(ItemReplaceTransfer $itemReplaceTransfer): CartChangeTransfer
     {
         $cartChangeTransferForAdding = $this->createCartChangeTransfer();
@@ -117,11 +95,6 @@ class CartItemReplacer implements CartItemReplacerInterface
         return $this->cartChangeRequestExpander->addItemsRequestExpand($cartChangeTransferForAdding);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemReplaceTransfer $itemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function prepareCartChangeTransferForRemoval(ItemReplaceTransfer $itemReplaceTransfer): CartChangeTransfer
     {
         $cartChangeTransferForRemoval = $this->createCartChangeTransfer();
@@ -138,9 +111,6 @@ class CartItemReplacer implements CartItemReplacerInterface
         return $this->cartChangeRequestExpander->removeItemRequestExpand($cartChangeTransferForRemoval);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function createCartChangeTransfer(): CartChangeTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();
@@ -153,12 +123,6 @@ class CartItemReplacer implements CartItemReplacerInterface
             ->setQuote($quoteTransfer);
     }
 
-    /**
-     * @param string $sku
-     * @param string|null $groupKey
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer|null
-     */
     protected function findItem(string $sku, ?string $groupKey = null): ?ItemTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();

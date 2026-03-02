@@ -22,12 +22,6 @@ class CartToUtilTextServiceBridge implements CartToUtilTextServiceInterface
         $this->utilTextService = $utilTextService;
     }
 
-    /**
-     * @param string $prefix
-     * @param bool $moreEntropy
-     *
-     * @return string
-     */
     public function generateUniqueId(string $prefix = '', bool $moreEntropy = false): string
     {
         return $this->utilTextService->generateUniqueId($prefix, $moreEntropy);

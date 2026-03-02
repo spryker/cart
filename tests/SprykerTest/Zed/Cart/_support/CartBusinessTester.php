@@ -40,9 +40,6 @@ class CartBusinessTester extends Actor
      */
     protected const DEFAULT_CURRENCY = 'EUR';
 
-    /**
-     * @return void
-     */
     public function addDependencies(): void
     {
         $this->getContainer()->set(static::SERVICE_CURRENCY, static::DEFAULT_CURRENCY);

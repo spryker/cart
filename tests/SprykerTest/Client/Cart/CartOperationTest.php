@@ -44,9 +44,6 @@ class CartOperationTest extends Unit
      */
     protected const FAKE_SKU_3 = 'fake_sku_3';
 
-    /**
-     * @return void
-     */
     public function testAddToCartAddsItemsToExistingCart(): void
     {
         // Arrange
@@ -79,9 +76,6 @@ class CartOperationTest extends Unit
         $this->assertSame($newQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testAddToCartAddsItemsToEmptyCart(): void
     {
         // Arrange
@@ -111,9 +105,6 @@ class CartOperationTest extends Unit
         $this->assertSame($newQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testAddToCartChecksCaseOfUnsuccessfulAddition(): void
     {
         // Arrange
@@ -141,9 +132,6 @@ class CartOperationTest extends Unit
         $this->assertSame($originalQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveFromCartRemovesItemsFromExistingCart(): void
     {
         // Arrange
@@ -176,9 +164,6 @@ class CartOperationTest extends Unit
         $this->assertSame($newQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveFromCartChecksCaseOfUnsuccessfulRemoval(): void
     {
         // Arrange
@@ -204,9 +189,6 @@ class CartOperationTest extends Unit
         $this->assertSame($originalQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityDecreasesQuantityForProvidedItems(): void
     {
         // Arrange
@@ -240,9 +222,6 @@ class CartOperationTest extends Unit
         $this->assertSame($newQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityIncreasesQuantityForProvidedItems(): void
     {
         // Arrange
@@ -276,9 +255,6 @@ class CartOperationTest extends Unit
         $this->assertSame($newQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityChangesQuantityForProvidedItems(): void
     {
         // Arrange
@@ -316,9 +292,6 @@ class CartOperationTest extends Unit
         $this->assertSame($newQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityChangesQuantityForEmptyCartChangeTransfer(): void
     {
         // Arrange
@@ -337,9 +310,6 @@ class CartOperationTest extends Unit
         $this->assertSame($originalQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityChangesQuantityForSameCartChangeTransfer(): void
     {
         // Arrange
@@ -363,9 +333,6 @@ class CartOperationTest extends Unit
         $this->assertSame($originalQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityUpdatesQuantityWithoutIncreasing(): void
     {
         // Arrange
@@ -394,9 +361,6 @@ class CartOperationTest extends Unit
         $this->assertSame($originalQuoteTransfer, $quoteResponseTransfer->getQuoteTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateQuantityUpdatesQuantityWithoutDecreasing(): void
     {
         // Arrange

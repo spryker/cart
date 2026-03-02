@@ -35,9 +35,6 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
  */
 class CartBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\Cart\Business\Replacer\CartItemReplacerInterface
-     */
     public function createCartItemReplacer(): CartItemReplacerInterface
     {
         return new CartItemReplacer($this->createCartOperation());
@@ -79,17 +76,11 @@ class CartBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Business\Model\QuoteCleanerInterface
-     */
     public function createQuoteCleaner(): QuoteCleanerInterface
     {
         return new QuoteCleaner();
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Business\Locker\QuoteLockerInterface
-     */
     public function createQuoteLocker(): QuoteLockerInterface
     {
         return new QuoteLocker(
@@ -99,9 +90,6 @@ class CartBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Business\StorageProvider\StorageProviderInterface
-     */
     public function createStorageProvider(): StorageProviderInterface
     {
         return new NonPersistentProvider(
@@ -110,9 +98,6 @@ class CartBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Business\Model\QuoteChangeObserverInterface
-     */
     public function createQuoteChangeObserver(): QuoteChangeObserverInterface
     {
         return new QuoteChangeObserver($this->getMessengerFacade(), $this->getQuoteChangeObserverPlugins());
@@ -171,9 +156,6 @@ class CartBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(CartDependencyProvider::FACADE_CALCULATION);
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Dependency\Facade\CartToQuoteFacadeInterface
-     */
     public function getQuoteFacade(): CartToQuoteFacadeInterface
     {
         return $this->getProvidedDependency(CartDependencyProvider::FACADE_QUOTE);
@@ -259,17 +241,11 @@ class CartBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(CartDependencyProvider::PLUGINS_QUOTE_LOCK_PRE_RESET);
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Business\Expander\GroupKeyExpanderInterface
-     */
     public function createGroupKeyExpander(): GroupKeyExpanderInterface
     {
         return new GroupKeyExpander($this->getUtilTextService());
     }
 
-    /**
-     * @return \Spryker\Zed\Cart\Dependency\Service\CartToUtilTextServiceInterface
-     */
     public function getUtilTextService(): CartToUtilTextServiceInterface
     {
         return $this->getProvidedDependency(CartDependencyProvider::SERVICE_UTIL_TEXT);

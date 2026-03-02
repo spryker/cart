@@ -39,11 +39,6 @@ class GatewayController extends AbstractGatewayController
         return $this->getFacade()->add($cartChangeTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function addToCartAction(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         return $this->getFacade()->addToCart($cartChangeTransfer);
@@ -59,11 +54,6 @@ class GatewayController extends AbstractGatewayController
         return $this->getFacade()->remove($cartChangeTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function removeFromCartAction(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         return $this->getFacade()->removeFromCart($cartChangeTransfer);
@@ -79,31 +69,16 @@ class GatewayController extends AbstractGatewayController
         return $this->getFacade()->reloadItems($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function validateQuoteAction(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         return $this->getFacade()->validateQuote($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function resetQuoteLockAction(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         return $this->getFacade()->resetQuoteLock($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartItemReplaceTransfer $cartItemReplaceTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function replaceItemAction(CartItemReplaceTransfer $cartItemReplaceTransfer): QuoteResponseTransfer
     {
         return $this->getFacade()->replaceItem($cartItemReplaceTransfer);

@@ -44,18 +44,12 @@ class NonPersistentProviderTest extends Unit
      */
     protected $provider;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
         $this->provider = new NonPersistentProvider([], []);
     }
 
-    /**
-     * @return void
-     */
     public function testAddExistingItem(): void
     {
         // Arrange
@@ -90,9 +84,6 @@ class NonPersistentProviderTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testAddNewItem(): void
     {
         // Arrange
@@ -137,9 +128,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame($existingQuantity, $existingItem->getQuantity());
     }
 
-    /**
-     * @return void
-     */
     public function testAddDoubleNewItem(): void
     {
         // Arrange
@@ -192,9 +180,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame($existingItemQuantity, $existingItem->getQuantity());
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveExistingItem(): void
     {
         // Arrange
@@ -220,9 +205,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertCount(0, $changedCart->getItems());
     }
 
-    /**
-     * @return void
-     */
     public function testRemoveNotExistingItem(): void
     {
         // Arrange
@@ -253,9 +235,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame($existingQuantity, $item->getQuantity());
     }
 
-    /**
-     * @return void
-     */
     public function testReduceWithMoreThenExists(): void
     {
         // Arrange
@@ -281,9 +260,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertCount(0, $changedCart->getItems());
     }
 
-    /**
-     * @return void
-     */
     public function testIncreaseWithNegativeValue(): void
     {
         // Arrange
@@ -310,9 +286,6 @@ class NonPersistentProviderTest extends Unit
         $this->provider->addItems($cartChangeTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testIncreaseWithZeroValue(): void
     {
         // Arrange
@@ -339,9 +312,6 @@ class NonPersistentProviderTest extends Unit
         $this->provider->addItems($cartChangeTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testDecreaseWithNegativeValue(): void
     {
         // Arrange
@@ -368,9 +338,6 @@ class NonPersistentProviderTest extends Unit
         $this->provider->removeItems($cartChangeTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testDecreaseWithZeroValue(): void
     {
         // Arrange
@@ -397,9 +364,6 @@ class NonPersistentProviderTest extends Unit
         $this->provider->removeItems($cartChangeTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testWithCustomCartAddItemStrategy(): void
     {
         // Arrange
@@ -453,9 +417,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame($existingItemQuantity, $existingItem->getQuantity());
     }
 
-    /**
-     * @return void
-     */
     public function testAddExistingItemWithNewPrice(): void
     {
         // Arrange
@@ -491,9 +452,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame($newPrice, $actualItemTransfer->getUnitGrossPrice());
     }
 
-    /**
-     * @return void
-     */
     public function testReduceItemWithNewPrice(): void
     {
         // Arrange
@@ -529,9 +487,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame($newPrice, $actualItemTransfer->getUnitGrossPrice());
     }
 
-    /**
-     * @return void
-     */
     public function testAddItemsToQuoteWithOneThousandItems(): void
     {
         // Arrange
@@ -578,13 +533,6 @@ class NonPersistentProviderTest extends Unit
         $this->assertSame(3, $changedQuoteItemTransfer->getQuantity());
     }
 
-    /**
-     * @param string $itemId
-     * @param int $itemQuantity
-     * @param int|null $unitGrossPrice
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function createQuoteWithItem(string $itemId, int $itemQuantity, ?int $unitGrossPrice = null): QuoteTransfer
     {
         $cart = new QuoteTransfer();
@@ -600,11 +548,6 @@ class NonPersistentProviderTest extends Unit
         return $cart;
     }
 
-    /**
-     * @param array $seed
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     protected function createItem(array $seed = []): ItemTransfer
     {
         return (new ItemBuilder($seed))->build();

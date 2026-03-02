@@ -44,11 +44,6 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
      */
     protected $quoteClient;
 
-    /**
-     * @param \Spryker\Client\Cart\Dependency\Client\CartToMessengerClientInterface $messengerClient
-     * @param \Spryker\Client\Cart\Dependency\Client\CartToQuoteInterface $quoteClient
-     * @param \Spryker\Client\CartExtension\Dependency\Plugin\QuoteStorageStrategyPluginInterface $quoteStorageStrategy
-     */
     public function __construct(
         CartToMessengerClientInterface $messengerClient,
         CartToQuoteInterface $quoteClient,
@@ -59,17 +54,11 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
         $this->quoteStorageStrategy = $quoteStorageStrategy;
     }
 
-    /**
-     * @return string
-     */
     public function getStorageStrategy(): string
     {
         return $this->quoteStorageStrategy->getStorageStrategy();
     }
 
-    /**
-     * @return bool
-     */
     protected function isQuoteLocked(): bool
     {
         return $this->quoteClient->isQuoteLocked($this->getQuote());
@@ -295,9 +284,6 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
         return $this->quoteStorageStrategy->increaseItemQuantity($sku, $groupKey, $quantity);
     }
 
-    /**
-     * @return void
-     */
     public function reloadItems(): void
     {
         if ($this->isQuoteLocked()) {
@@ -309,19 +295,11 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
         $this->quoteStorageStrategy->reloadItems();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function validateQuote(): QuoteResponseTransfer
     {
         return $this->quoteStorageStrategy->validateQuote();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setQuoteCurrency(CurrencyTransfer $currencyTransfer): QuoteResponseTransfer
     {
         if ($this->isQuoteLocked()) {
@@ -349,9 +327,6 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
         return $this->quoteStorageStrategy->resetQuoteLock();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function createNotSuccessfulQuoteResponseTransfer(): QuoteResponseTransfer
     {
         $quoteResponseTransfer = new QuoteResponseTransfer();
@@ -363,17 +338,11 @@ class QuoteStorageStrategyProxy implements QuoteStorageStrategyProxyInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @return void
-     */
     protected function addPermissionFailedMessage(): void
     {
         $this->messengerClient->addErrorMessage(static::GLOSSARY_KEY_LOCKED_CART_CHANGE_DENIED);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function getQuote(): QuoteTransfer
     {
         return $this->quoteClient->getQuote();

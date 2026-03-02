@@ -15,11 +15,6 @@ use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
 class CartStub extends ZedRequestStub implements CartStubInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addValidItems(CartChangeTransfer $cartChangeTransfer): QuoteTransfer
     {
         /** @var \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer */
@@ -125,11 +120,6 @@ class CartStub extends ZedRequestStub implements CartStubInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function resetQuoteLock(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         /** @var \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer */

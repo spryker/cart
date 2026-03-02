@@ -13,11 +13,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface OperationInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addValid(CartChangeTransfer $cartChangeTransfer): QuoteTransfer;
 
     /**
@@ -27,11 +22,6 @@ interface OperationInterface
      */
     public function add(CartChangeTransfer $cartChangeTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function addToCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer;
 
     /**
@@ -41,11 +31,6 @@ interface OperationInterface
      */
     public function remove(CartChangeTransfer $cartChangeTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function removeFromCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer;
 
     /**
@@ -55,10 +40,5 @@ interface OperationInterface
      */
     public function reloadItems(QuoteTransfer $quoteTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function reloadItemsInQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer;
 }

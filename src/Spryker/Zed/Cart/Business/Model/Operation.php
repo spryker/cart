@@ -172,11 +172,6 @@ class Operation implements OperationInterface
         $this->cartPreReloadPluginStrategyResolver = $cartPreReloadPluginStrategyResolver;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addValid(CartChangeTransfer $cartChangeTransfer): QuoteTransfer
     {
         $cartChangeTransfer->requireQuote();
@@ -211,11 +206,6 @@ class Operation implements OperationInterface
         return $this->addToCart($cartChangeTransfer)->getQuoteTransfer();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function addToCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         $cartChangeTransfer->requireQuote();
@@ -268,11 +258,6 @@ class Operation implements OperationInterface
         return $this->removeFromCart($cartChangeTransfer)->getQuoteTransfer();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function removeFromCart(CartChangeTransfer $cartChangeTransfer): QuoteResponseTransfer
     {
         $cartChangeTransfer->requireQuote();
@@ -314,11 +299,6 @@ class Operation implements OperationInterface
         return $this->reloadItemsInQuote($quoteTransfer)->getQuoteTransfer();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function reloadItemsInQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer
     {
         $originalQuoteTransfer = clone $quoteTransfer;
@@ -376,11 +356,6 @@ class Operation implements OperationInterface
             ->setIsSuccessful(true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function addQuoteErrorsToQuoteResponse(QuoteResponseTransfer $quoteResponseTransfer): QuoteResponseTransfer
     {
         $errorMessages = $this->messengerFacade->getStoredMessages()->getErrorMessages();
@@ -395,11 +370,6 @@ class Operation implements OperationInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function executePostReloadItemsPlugins(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         foreach ($this->postReloadItemsPlugins as $postReloadItemPlugin) {
@@ -427,11 +397,6 @@ class Operation implements OperationInterface
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartChangeTransfer
-     */
     protected function normalizeCartChangeTransfer(CartChangeTransfer $cartChangeTransfer): CartChangeTransfer
     {
         foreach ($this->cartBeforePreCheckNormalizerPlugins as $cartItemNormalizerPlugin) {

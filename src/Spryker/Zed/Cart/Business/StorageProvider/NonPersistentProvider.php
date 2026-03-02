@@ -37,11 +37,6 @@ class NonPersistentProvider implements StorageProviderInterface
         $this->cartRemoveItemStrategyPlugins = $cartRemoveItemStrategyPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CartChangeTransfer $cartChangeTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addItems(CartChangeTransfer $cartChangeTransfer): QuoteTransfer
     {
         $quoteTransfer = $cartChangeTransfer->getQuoteOrFail();
@@ -102,12 +97,6 @@ class NonPersistentProvider implements StorageProviderInterface
         return $cartChangeTransfer->getQuote();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function removeItem(ItemTransfer $itemTransfer, QuoteTransfer $quoteTransfer): void
     {
         $this->isValidQuantity($itemTransfer);
@@ -146,11 +135,6 @@ class NonPersistentProvider implements StorageProviderInterface
         return $cartIndex;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return string
-     */
     protected function getItemIdentifier(ItemTransfer $itemTransfer): string
     {
         return $itemTransfer->getGroupKey() ?: $itemTransfer->getSku();

@@ -35,12 +35,6 @@ class QuoteValidator implements QuoteValidatorInterface
      */
     protected $quoteFacade;
 
-    /**
-     * @param \Spryker\Zed\Cart\Business\Model\OperationInterface $operation
-     * @param \Spryker\Zed\Cart\Business\Model\QuoteChangeObserverInterface $changeNote
-     * @param \Spryker\Zed\Cart\Dependency\Facade\CartToMessengerInterface $messengerFacade
-     * @param \Spryker\Zed\Cart\Dependency\Facade\CartToQuoteFacadeInterface $quoteFacade
-     */
     public function __construct(
         OperationInterface $operation,
         QuoteChangeObserverInterface $changeNote,
@@ -85,11 +79,6 @@ class QuoteValidator implements QuoteValidatorInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     protected function addErrorsToQuoteResponse(QuoteResponseTransfer $quoteResponseTransfer): QuoteResponseTransfer
     {
         /** @var \Generated\Shared\Transfer\FlashMessagesTransfer|null $storedMessages */

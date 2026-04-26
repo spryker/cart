@@ -130,6 +130,8 @@ class Operation implements OperationInterface
      */
     protected StrategyResolverInterface $cartPreReloadPluginStrategyResolver;
 
+    protected CartConfig $config;
+
     /**
      * @param \Spryker\Zed\Cart\Business\StorageProvider\StorageProviderInterface $cartStorageProvider
      * @param \Spryker\Zed\Cart\Dependency\Facade\CartToCalculationInterface $calculationFacade
@@ -156,7 +158,8 @@ class Operation implements OperationInterface
         array $cartRemovalPreCheckPlugins,
         array $postReloadItemsPlugins,
         array $cartBeforePreCheckNormalizerPlugins,
-        StrategyResolverInterface $cartPreReloadPluginStrategyResolver
+        StrategyResolverInterface $cartPreReloadPluginStrategyResolver,
+        CartConfig $config
     ) {
         $this->cartStorageProvider = $cartStorageProvider;
         $this->calculationFacade = $calculationFacade;
@@ -170,6 +173,7 @@ class Operation implements OperationInterface
         $this->postReloadItemsPlugins = $postReloadItemsPlugins;
         $this->cartBeforePreCheckNormalizerPlugins = $cartBeforePreCheckNormalizerPlugins;
         $this->cartPreReloadPluginStrategyResolver = $cartPreReloadPluginStrategyResolver;
+        $this->config = $config;
     }
 
     public function addValid(CartChangeTransfer $cartChangeTransfer): QuoteTransfer
@@ -184,6 +188,34 @@ class Operation implements OperationInterface
             return $quoteTransfer;
         }
 
+        if ($this->config->isAddToCartBulkEnabled()) {
+            return $this->addValidInBulk($cartChangeTransfer, $quoteTransfer);
+        }
+
+        return $this->addValidSequentially($cartChangeTransfer, $quoteTransfer);
+    }
+
+    protected function addValidInBulk(CartChangeTransfer $cartChangeTransfer, QuoteTransfer $quoteTransfer): QuoteTransfer
+    {
+        $validItemTransfers = new ArrayObject();
+        foreach ($cartChangeTransfer->getItems() as $itemTransfer) {
+            $currentCartChangeTransfer = (new CartChangeTransfer())
+                ->setQuote($quoteTransfer)
+                ->addItem($itemTransfer)
+                ->setOperation(CartConfig::OPERATION_ADD);
+
+            if ($this->preCheckCart($currentCartChangeTransfer)) {
+                $validItemTransfers->append($itemTransfer);
+            }
+        }
+
+        $cartChangeTransfer->setItems($validItemTransfers);
+
+        return $this->addToCart($cartChangeTransfer)->getQuoteTransfer();
+    }
+
+    protected function addValidSequentially(CartChangeTransfer $cartChangeTransfer, QuoteTransfer $quoteTransfer): QuoteTransfer
+    {
         foreach ($cartChangeTransfer->getItems() as $itemTransfer) {
             $currentCartChangeTransfer = (new CartChangeTransfer())
                 ->setQuote($quoteTransfer)

@@ -20,4 +20,16 @@ class CartConfig extends AbstractBundleConfig
      * @var string
      */
     public const OPERATION_REMOVE = 'remove';
+
+    /**
+     * Specification:
+     * - When true, addValid() pre-checks each item individually then adds all valid items in a single bulk addToCart call.
+     * - When false, addValid() calls addToCart() per item sequentially (default, backward-compatible behavior).
+     *
+     * @api
+     */
+    public function isAddToCartBulkEnabled(): bool
+    {
+        return false;
+    }
 }

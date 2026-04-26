@@ -58,6 +58,7 @@ class CartBusinessFactory extends AbstractBusinessFactory
             $this->getPostReloadItemsPlugins(),
             $this->getCartBeforePreCheckNormalizerPlugins(),
             $this->createCartPreReloadPluginStrategyResolver(),
+            $this->getConfig(),
         );
 
         return $operation;
